@@ -49,7 +49,7 @@
 
     <NumberPicker
 
-        android:b=""
+
         android:id="@+id/numpick"
         android:layout_width="50dp"
         android:layout_height="100dp"
