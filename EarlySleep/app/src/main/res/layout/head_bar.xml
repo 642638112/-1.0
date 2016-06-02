@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/default_headbar"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/headbar_left_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:clickable="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="30dp"
+        android:paddingRight="15dp"/>
+
+    <ImageView
+        android:layout_centerVertical="true"
+        android:src="@mipmap/setting"
+        android:id="@+id/headbar_left_imagebutton"
+        android:layout_width="32dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="12dp"
+        android:visibility="gone"
+        android:layout_alignParentLeft="true"
+        android:scaleType="centerCrop"
+
+
+        android:paddingRight="15dp"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/headbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/title_size"
+        android:gravity="center"
+        android:clickable="true"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/headbar_right_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:clickable="true"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"/>
+
+    <ImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/headbar_right_imagebutton"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+
+        android:layout_marginRight="12dp"
+        android:clickable="true"/>
+
+</RelativeLayout>

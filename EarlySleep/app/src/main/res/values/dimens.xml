@@ -6,4 +6,5 @@
 
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
+    <dimen name="title_size">18dp</dimen>
 </resources>
