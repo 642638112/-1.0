@@ -46,13 +46,50 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="临时锁定"/>
+    <RelativeLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
 
-    <NumberPicker
+        android:layout_height="wrap_content">
+
+       <include layout="@layout/mynumberpicker"
+           android:id="@+id/numpickrelay" />
+        <TextView
+            android:id="@+id/time1"
+            android:layout_toRightOf="@id/numpickrelay"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="h"/>
+
+        <include layout="@layout/mynumberpickerminute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/numpickrelay2" android:layout_toRightOf="@id/time1"/>
+
+        <TextView
+            android:id="@+id/time2"
+            android:layout_toRightOf="@id/numpickrelay2"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="min"/>
+        <LinearLayout
+            android:id="@+id/switch_view_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/time2"
+            android:layout_marginLeft="38dp"
+            android:orientation="vertical"
+            android:layout_centerVertical="true" >
 
 
-        android:id="@+id/numpick"
-        android:layout_width="50dp"
-        android:layout_height="100dp"
-        ></NumberPicker>
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

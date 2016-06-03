@@ -75,7 +75,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         SlidingMenu menu = getSlidingMenu();
         menu.setMode(SlidingMenu.LEFT);
 
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         menu.setShadowWidthRes(R.dimen.shadow_width);
         menu.setShadowDrawable(R.drawable.shadow);
 
