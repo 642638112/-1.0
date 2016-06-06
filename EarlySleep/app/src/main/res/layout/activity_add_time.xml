@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/head_bar_two"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/transparent"/>
+<RelativeLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:id="@+id/maohao"
+        android:layout_centerInParent="true"
+        android:textSize="20dp"/>
+<LinearLayout
+    android:layout_width="130dp"
+
+    android:layout_toLeftOf="@id/maohao"
+    android:layout_height="wrap_content">
+
+    <com.earlysleep.View.WheelView
+
+        android:id="@+id/main_wv"
+
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fillViewport="false"></com.earlysleep.View.WheelView>
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="130dp"
+    android:layout_toRightOf="@id/maohao"
+    android:layout_height="wrap_content">   <com.earlysleep.View.WheelView
+
+    android:id="@+id/main_wv1"
+
+    android:layout_width="match_parent"
+    android:layout_height="250dp"></com.earlysleep.View.WheelView></LinearLayout>
+
+</RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:clickable="true"
+        android:id="@+id/monday_tv"
+        android:layout_weight="1"
+        android:textColor="@drawable/button_text_color"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="周一"/>
+    <TextView
+        android:clickable="true"
+        android:id="@+id/tuesday_tv"
+        android:textColor="@drawable/button_text_color"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="周二"/>
+    <TextView
+        android:clickable="true"
+        android:id="@+id/wednesday_tv"
+        android:textColor="@drawable/button_text_color"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="周三"/>
+    <TextView
+        android:clickable="true"
+        android:id="@+id/thursday_tv"
+        android:textColor="@drawable/button_text_color"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="周四"/>
+    <TextView
+        android:clickable="true"
+        android:id="@+id/friday_tv"
+        android:textColor="@drawable/button_text_color"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="周五"/>
+    <TextView
+        android:clickable="true"
+        android:id="@+id/saturday_tv"
+        android:textColor="@drawable/button_text_color"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="周六"/>
+    <TextView
+        android:clickable="true"
+
+        android:id="@+id/sunday_tv"
+        android:textColor="@drawable/button_text_color"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="周日"/>
+
+</LinearLayout>
+    <View
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_height="70dp">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:text="提醒铃声"/>
+
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="38dp"
+            android:text="溪流"
+            android:textColor="@color/textgray"
+            />
+        <ImageView
+
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_width="20dp"
+            android:layout_centerVertical="true"
+            android:layout_height="20dp"
+
+            android:src="@drawable/next"/>
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        />
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_height="70dp">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:text="推迟10分钟提醒"/>
+
+
+        <Switch
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:id="@+id/message_receive_switch"
+            android:checked="true"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:showText="true"
+            android:textOff=""
+            android:textOn=""
+            android:thumbTextPadding="9dp"
+            android:switchMinWidth="38dp"
+            android:track="@drawable/switch_bg"
+android:thumb="@drawable/switch_thumb"
+        android:layout_gravity="center_vertical"
+        />
+
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        />
+</LinearLayout>

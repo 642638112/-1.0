@@ -5,6 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="gray">#cfcfcf</color>
+
+    <color name="textgray">#bfbfbf</color>
     <color name="titleblue">#0da4a9</color>
     <color name="transparent">#00000000</color><!-- 透明 -->
     <color name="white">#ffffff</color><!-- 白色 -->

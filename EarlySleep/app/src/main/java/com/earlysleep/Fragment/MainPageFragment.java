@@ -13,6 +13,7 @@ import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.earlysleep.Activity.AddTimeActivity;
 import com.earlysleep.Activity.MainActivity;
 import com.earlysleep.R;
 import com.earlysleep.View.SwitchView;
@@ -32,9 +33,9 @@ public class MainPageFragment extends BaseFragment {
     @Bind(R.id.headbar_right_imagebutton)
       ImageView add;//添加按钮
     @Bind(R.id.headbar_title)
-     TextView title;
+      TextView title;
     @Bind(R.id.default_headbar)
-     RelativeLayout headerbar;
+       RelativeLayout headerbar;
     @Bind(R.id.numpick)
     NumberPicker numPick;
     @Bind(R.id.numpickmin)
@@ -105,6 +106,9 @@ public class MainPageFragment extends BaseFragment {
         switch (v.getId()){
             case R.id.headbar_left_imagebutton:
                     showMenu();
+                break;
+            case R.id.headbar_right_imagebutton:startActivity(AddTimeActivity.class);
+                break;
 
 
 
