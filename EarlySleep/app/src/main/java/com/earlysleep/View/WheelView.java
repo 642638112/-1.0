@@ -290,8 +290,12 @@ public class WheelView extends ScrollView {
             }
             if (position == i) {
                 itemView.setTextColor(Color.parseColor("#0288ce"));
-            } else {
-                itemView.setTextColor(Color.parseColor("#bbbbbb"));
+            }
+           else if(position==i+2||position==i-2){
+                itemView.setTextColor(Color.parseColor("#cccccccc"));
+            }
+            else {
+                itemView.setTextColor(Color.parseColor("#999999"));
 
             }
         }

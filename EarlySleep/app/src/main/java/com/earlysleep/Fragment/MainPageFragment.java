@@ -17,9 +17,13 @@ import com.earlysleep.Activity.AddTimeActivity;
 import com.earlysleep.Activity.MainActivity;
 import com.earlysleep.R;
 import com.earlysleep.View.SwitchView;
+import com.earlysleep.model.TimeSeting;
 import com.musketeer.baselibrary.Activity.BaseFragment;
 
+import org.litepal.crud.DataSupport;
+
 import java.lang.reflect.Field;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -98,6 +102,17 @@ public class MainPageFragment extends BaseFragment {
         numPick2.setValue(0);
         setNumberPickerDividerColor(numPick2);
         title.setText(R.string.mianpege_title_naem);
+
+        qurydata();
+    }
+
+    private void qurydata() {
+        TimeSeting timeSeting = DataSupport.find(TimeSeting.class, 1);
+    //    if(timeSeting.s)
+      //  System.out.println("timeSeting:time="+timeSeting.getTime());
+        List<TimeSeting> allNews = DataSupport.findAll(TimeSeting.class);
+        System.out.println("allNews:time="+allNews.size());
+        System.out.println(allNews.get(5).getTime());
     }
 
     @Override
