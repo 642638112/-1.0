@@ -2,15 +2,22 @@ package com.earlysleep.model;
 
 import org.litepal.crud.DataSupport;
 
-import java.util.List;
-
 /**
  * Created by zml on 2016/6/4.
  * 介绍：主页的时间信息包括（设定的具体时间  周几  以及是否打开开关）
  */
 public class TimeSeting extends DataSupport {
     private String time;//具体时间 精确到分钟
-    private List<String> weekday;//设定的哪几天
+
+    public String getWeekday() {
+        return weekday;
+    }
+
+    public void setWeekday(String weekday) {
+        this.weekday = weekday;
+    }
+
+    private  String weekday;
     private boolean flag;//是否打开开关
 
     public String getTime() {
@@ -21,13 +28,7 @@ public class TimeSeting extends DataSupport {
         this.time = time;
     }
 
-    public List<String> getWeekday() {
-        return weekday;
-    }
 
-    public void setWeekday(List<String> weekday) {
-        this.weekday = weekday;
-    }
 
     public boolean isFlag() {
         return flag;

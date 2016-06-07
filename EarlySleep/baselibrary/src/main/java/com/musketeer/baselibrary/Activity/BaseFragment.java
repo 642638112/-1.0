@@ -18,8 +18,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-
-import com.musketeer.baselibrary.R;
 import com.musketeer.baselibrary.util.LogUtils;
 
 import butterknife.ButterKnife;
@@ -109,4 +107,5 @@ public abstract class BaseFragment extends Fragment implements OnClickListener, 
 		// TODO Auto-generated method stub
 
 	}
+
 }

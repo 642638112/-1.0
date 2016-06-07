@@ -16,6 +16,8 @@ import com.earlysleep.View.WheelView;
 import com.earlysleep.model.TimeSeting;
 import com.musketeer.baselibrary.Activity.BaseActivity;
 
+import org.litepal.crud.DataSupport;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,6 +76,8 @@ public class AddTimeActivity extends BaseActivity {
 
     }
 
+
+
     @Override
     public void initView() {
         headerbar_two.setBackgroundColor(getResources().getColor(R.color.titleblue));
@@ -116,7 +120,9 @@ public class AddTimeActivity extends BaseActivity {
         wheelView1.setOffset(2);
         wheelView1.setItems(Arrays.asList(MINUTES));
         wheelView1.setSeletion(100);
-
+        timehour=wheelView.getSeletedItem();
+        timeminute=wheelView1.getSeletedItem();
+       // wheelView.seton
         wheelView.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
             @Override
             public void onSelected(int selectedIndex, String item) {
@@ -254,33 +260,48 @@ public class AddTimeActivity extends BaseActivity {
      * 保持添加的内容
      */
     private void saveinfor() {
-        String time=timehour+timeminute;
+        String time=timehour+":"+timeminute;
         System.out.println(time+"++++++++++++++");
-        day=getdays();
+        String weekdays="";
+        weekdays=getdays();
+
       //  SQLiteDatabase db = Connector.getDatabase();
+
         TimeSeting t=new TimeSeting();
         t.setTime(time);
-        t.setWeekday(day);
+        t.setWeekday(weekdays);
+        //t.setWeekdays(day);
+        t.setFlag(true);
         t.save();if (t.save()) {
             Toast.makeText(this, "存储成功", Toast.LENGTH_SHORT).show();
+            List<TimeSeting> allNews = DataSupport.findAll(TimeSeting.class);
+
         } else {
             Toast.makeText(this, "存储失败", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     /**
      * @return
      */
-    public List<String> getdays(){
-        List<String> list=new ArrayList<>();
-        if(flag1){list.add("mondat");}
-        if(flag2){list.add("tuesday");}
-        if(flag3){list.add("thirsday");}
-        if(flag4){list.add("wednesday");}
-        if(flag5){list.add("friday");}
-        if(flag6){list.add("saturday");}
-        if(flag7){list.add("sundaty");}
-        return list;
+    public String  getdays(){
+        String s="";
+
+        if(flag1){
+            s="周一";
+        }
+        if(flag2){s=s+"周二";}
+        if(flag3){s=s+"周三";}
+        if(flag4){s=s+"周四";}
+        if(flag5){s=s+"周五";}
+        if(flag6){s=s+"周六";}
+        if(flag7){s=s+"周日";}
+        if(s.length()>2){
+
+        }
+        System.out.println(s);
+        return s;
 
     }
 

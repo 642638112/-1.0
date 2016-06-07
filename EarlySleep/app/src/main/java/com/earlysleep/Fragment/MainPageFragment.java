@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.earlysleep.Activity.AddTimeActivity;
 import com.earlysleep.Activity.MainActivity;
+import com.earlysleep.Adapter.timeadapter;
 import com.earlysleep.R;
 import com.earlysleep.View.SwitchView;
 import com.earlysleep.model.TimeSeting;
@@ -46,10 +48,13 @@ public class MainPageFragment extends BaseFragment {
     NumberPicker numPick2;
     @Bind(R.id.switch_view_ll)//switch_view
     LinearLayout switch_view_ll;
-
-            SwitchView switch_view;
+    @Bind(R.id.time_lv)//listview 时间列表
+    ListView time_lv;
+    SwitchView switch_view;
     private Handler handler;
-
+    private static final String[] strs = new String[] {
+        "first", "second", "third", "fourth", "fifth"
+    };
     @Override
     public void setContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         BaseView = inflater.inflate(R.layout.fragemnt_mainpage, null);
@@ -72,6 +77,7 @@ public class MainPageFragment extends BaseFragment {
         add.setImageResource(R.mipmap.add);
         add.setBackground(getResources().getDrawable(R.drawable.button_default_bg));
         title.setTextColor(getResources().getColor(R.color.white));
+
     }
 
     @Override
@@ -103,18 +109,31 @@ public class MainPageFragment extends BaseFragment {
         setNumberPickerDividerColor(numPick2);
         title.setText(R.string.mianpege_title_naem);
 
-        qurydata();
+        List<TimeSeting> s=  qurydata();timeadapter t=new timeadapter(getActivity(),s);
+       // time_lv.setd
+        time_lv.setAdapter(t);
+      //  time_lv.setAdapter(new ArrayAdapter<String>(getActivity(),
+        //        android.R.layout.simple_list_item_1, strs));
     }
 
-    private void qurydata() {
-        TimeSeting timeSeting = DataSupport.find(TimeSeting.class, 1);
+    private List<TimeSeting>  qurydata() {
+     //   TimeSeting timeSeting = DataSupport.find(TimeSeting.class, 1);
     //    if(timeSeting.s)
       //  System.out.println("timeSeting:time="+timeSeting.getTime());
         List<TimeSeting> allNews = DataSupport.findAll(TimeSeting.class);
-        System.out.println("allNews:time="+allNews.size());
-        System.out.println(allNews.get(5).getTime());
+      //  System.out.println("allNews:time="+allNews.size());
+     //   System.out.println(allNews.get(5).getTime());
+//       System.out.println(allNews.get(0).getTime()+"++++++++++++++++++++++");
+//        System.out.println(allNews.get(0).isFlag()+"++++++++++++++++++++++");
+       // System.out.println(allNews.get(0).getWeekday().get(0)+"++++++++++++++++++++++");
+        return allNews;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //qurydata();
+    }
     @Override
     public void onClick(View v) {
         super.onClick(v);
