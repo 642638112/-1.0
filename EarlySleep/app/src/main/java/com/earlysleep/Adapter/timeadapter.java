@@ -20,7 +20,7 @@ public class timeadapter extends BaseAdapter {
     private Context context;
     private List<TimeSeting> list;
     private LayoutInflater mInflater = null;
-    public timeadapter(Context context,List<TimeSeting> list){
+    public timeadapter(Context context, List<TimeSeting> list){
       //  super();
         mInflater = LayoutInflater.from(context);
         this.context=context;
@@ -58,28 +58,46 @@ public class timeadapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
    viewHolder.time.setText(list.get(position).getTime());
-        String t=list.get(position).getWeekday();
+       String t=list.get(position).getWeeksday();
+
 //        System.out.println(t.size());
    //     System.out.println(t.get(0)+"-----------");
-    viewHolder.day.setText(t);//需要更改格式
+  viewHolder.day.setText(format(t));//需要更改格式
         return convertView;
     }
 
     /**
-     * @param t 传入List 返回 需要的格式
+     * @param t 传入String 返回 需要的格式
+     * @return
      */
-    private String format(List<String> t) {
-        StringBuilder s=new StringBuilder();
-        if(t.size()==1){
-            s.append(t.get(0));
+    private String format(String t) {
+        String s1="";
+        if(t==null){
+
         }
-        else if(t.size()>1){
-            for(int i=0;i<t.size()-1;i++){
-                s.append(t.get(i)+"、");
+        else if(t.length()==2){
+            s1=t;
+      }
+        else if(t.length()==14){
+            s1= "每天";
+
+      }
+        else if(t.equals("周一周二周三周四周五")){
+          s1= "工作日";
+      }
+        else {System.out.println(t);
+          char[] arr=t.toCharArray();
+            for(int i=0;i<arr.length;i++){
+                System.out.println(arr[i]);
             }
-            s.append(t.get(t.size()-1));
-        }
-        return s.toString();
+         String s="";
+          for(int i=0;i<arr.length-2;i=i+2){
+              s=s+arr[i]+arr[i+1]+"、";
+          }
+          s=s+arr[arr.length-2]+arr[arr.length-1];
+            s1=s;
+      }
+        return s1;
     }
 
     public class ViewHolder{

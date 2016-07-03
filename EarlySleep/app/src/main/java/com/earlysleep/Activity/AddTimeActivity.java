@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.earlysleep.R;
 import com.earlysleep.View.WheelView;
+import com.earlysleep.manager.AlarmManagerUtil;
 import com.earlysleep.model.TimeSeting;
 import com.musketeer.baselibrary.Activity.BaseActivity;
-
-import org.litepal.crud.DataSupport;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -31,23 +31,24 @@ import butterknife.Bind;
  */
 public class AddTimeActivity extends BaseActivity {
     @Bind(R.id.headbar_left_imagebutton_two)
-     ImageView back;//返回
+    ImageView back;//返回
     @Bind(R.id.headbar_right_imagebutton_two)
-      ImageView sure;//queing按钮
+    ImageView sure;//queing按钮
     @Bind(R.id.headbar_title_two)
-      TextView addtitle;
+    TextView addtitle;
     @Bind(R.id.default_headbar_two)
-      RelativeLayout headerbar_two;
+    RelativeLayout headerbar_two;
     @Bind(R.id.main_wv1)
     WheelView wheelView1;
+
     @Bind(R.id.main_wv)
     WheelView wheelView;
 
     @Bind(R.id.monday_tv)//周一
-    TextView monday;
+            TextView monday;
 
     @Bind(R.id.tuesday_tv)//周2
-    TextView tuesday;
+            TextView tuesday;
     @Bind(R.id.wednesday_tv)
     TextView wednesday;
 
@@ -60,8 +61,14 @@ public class AddTimeActivity extends BaseActivity {
     TextView saturday;
     @Bind(R.id.sunday_tv)
     TextView sunday;
+    @Bind(R.id.setting_time_sw)
+    Switch sw;
+    TimeSeting t;
     private boolean flag1,flag2,flag3,flag4,flag5,flag6,flag7;
-        /**
+    private  int cicle=0;//标志位 判断选中的天数
+    String snumber="";//选中那几天
+    //  private int[] WEEK;
+    /**
      *
      */
     private static final String[] PLANETS = new String[]{"1", "2", "3", "4", "5", "6", "7", "8","9","10","11","12"};
@@ -72,7 +79,7 @@ public class AddTimeActivity extends BaseActivity {
 
     @Override
     public void setContentView(Bundle savedInstanceState) {
-          setContentView(R.layout.activity_add_time);
+        setContentView(R.layout.activity_add_time);
 
     }
 
@@ -80,6 +87,7 @@ public class AddTimeActivity extends BaseActivity {
 
     @Override
     public void initView() {
+
         headerbar_two.setBackgroundColor(getResources().getColor(R.color.titleblue));
         back.setVisibility(View.VISIBLE);
         back.setImageResource(R.mipmap.back);
@@ -106,12 +114,15 @@ public class AddTimeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-       for(int i=0;i<=59;i++){
-          if(i<10){
-              MINUTES[i]="0"+i;
-          }
-           MINUTES[i]=i+"";
-       }
+        for(int i=0;i<=59;i++){
+            if(i<10){
+                MINUTES[i]="0"+i;
+            }
+            else{
+                MINUTES[i]=i+"";
+            }
+
+        }
 
         wheelView.setOffset(2);
         wheelView.setItems(Arrays.asList(PLANETS));
@@ -122,7 +133,7 @@ public class AddTimeActivity extends BaseActivity {
         wheelView1.setSeletion(100);
         timehour=wheelView.getSeletedItem();
         timeminute=wheelView1.getSeletedItem();
-       // wheelView.seton
+        // wheelView.seton
         wheelView.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
             @Override
             public void onSelected(int selectedIndex, String item) {
@@ -135,8 +146,6 @@ public class AddTimeActivity extends BaseActivity {
                 timeminute = item;
             }
         });
-
-
 
 
         addtitle.setText(R.string.addtime_title_naem);
@@ -152,13 +161,13 @@ public class AddTimeActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.headbar_left_imagebutton_two:
                 finish();
-              break;
+                break;
             case R.id.headbar_right_imagebutton_two://确定
-               // finish();
+                // finish();
                 saveinfor();
                 finish();
                 break;
-            case R.id.monday_tv: TextPaint tp1 = wednesday.getPaint();
+            case R.id.monday_tv: TextPaint tp1 = monday.getPaint();
                 if(flag1==true){
                     tp1.setFakeBoldText(false);
                     monday.setSelected(false);
@@ -170,7 +179,8 @@ public class AddTimeActivity extends BaseActivity {
                     tp1.setFakeBoldText(true);
                 }
                 break;
-            case R.id.tuesday_tv:   TextPaint tp2 = wednesday.getPaint();
+            case R.id.tuesday_tv:
+                TextPaint tp2 = tuesday.getPaint();
                 if(flag2==true){
 
                     tuesday.setSelected(false);
@@ -180,7 +190,7 @@ public class AddTimeActivity extends BaseActivity {
                 else {tuesday.setSelected(true);  System.out.println("选择");
                     flag2=true; tp2.setFakeBoldText(true);
                 }
-             //   finish();
+                //   finish();
                 break;
             case R.id.wednesday_tv:
                 TextPaint tp3 = wednesday.getPaint();
@@ -192,10 +202,10 @@ public class AddTimeActivity extends BaseActivity {
                 else {wednesday.setSelected(true);  System.out.println("选择");
                     flag3=true; tp3.setFakeBoldText(true);
                 }
-               // finish();
+                // finish();
                 break;
             case R.id.thursday_tv:  TextPaint tp = thursday.getPaint();
-             //   finish();
+                //   finish();
                 if(flag4==true){
                     thursday.setSelected(false);
                     flag4=false;
@@ -203,15 +213,15 @@ public class AddTimeActivity extends BaseActivity {
                     tp.setFakeBoldText(false);
                 }
                 else {thursday.setSelected(true);  System.out.println("选择");
-                 //   thursday.
+                    //   thursday.
 
                     tp.setFakeBoldText(true);
                     flag4=true;
                 }
                 break;
             case R.id.friday_tv:
-                TextPaint tp5 = thursday.getPaint();
-              //  finish();
+                TextPaint tp5 = friday.getPaint();
+                //  finish();
                 if(flag5==true){
 
                     friday.setSelected(false);
@@ -225,7 +235,7 @@ public class AddTimeActivity extends BaseActivity {
                 }
                 break;
             case R.id.saturday_tv:
-                TextPaint tp6 = thursday.getPaint();
+                TextPaint tp6 = saturday.getPaint();
                 if(flag6==true){
                     saturday.setSelected(false);
                     flag6=false;
@@ -239,7 +249,7 @@ public class AddTimeActivity extends BaseActivity {
                 //  finish();
                 break;
             case R.id.sunday_tv:
-                TextPaint tp7 = thursday.getPaint();
+                TextPaint tp7 = sunday.getPaint();
                 if(flag7==true){
                     sunday.setSelected(false);
                     flag7=false;
@@ -250,7 +260,7 @@ public class AddTimeActivity extends BaseActivity {
                     flag7=true;
                     tp7.setFakeBoldText(true);
                 }
-              //  finish();
+                //  finish();
 
 
         }
@@ -261,20 +271,23 @@ public class AddTimeActivity extends BaseActivity {
      */
     private void saveinfor() {
         String time=timehour+":"+timeminute;
-        System.out.println(time+"++++++++++++++");
-        String weekdays="";
-        weekdays=getdays();
+        String sdays= getdays3();
+        setclock();//点击确定按钮 首先设置闹钟 然后是保存数据
 
-      //  SQLiteDatabase db = Connector.getDatabase();
+        t=new TimeSeting();
+        t.save();
 
-        TimeSeting t=new TimeSeting();
+
+
+
         t.setTime(time);
-        t.setWeekday(weekdays);
-        //t.setWeekdays(day);
+        t.setWeeksday(sdays);
+
+
         t.setFlag(true);
         t.save();if (t.save()) {
-            Toast.makeText(this, "存储成功", Toast.LENGTH_SHORT).show();
-            List<TimeSeting> allNews = DataSupport.findAll(TimeSeting.class);
+            //    Toast.makeText(this, "存储成功", Toast.LENGTH_SHORT).show();
+            //   List<TimeSeting> allNews = DataSupport.findAll(TimeSeting.class);
 
         } else {
             Toast.makeText(this, "存储失败", Toast.LENGTH_SHORT).show();
@@ -283,25 +296,67 @@ public class AddTimeActivity extends BaseActivity {
     }
 
     /**
-     * @return
+     *设置定时任务  设置闹钟
      */
-    public String  getdays(){
+    public void setclock(){
+        if(cicle==7){//是每天的闹钟
+            System.out.println("每天的闹钟："+Integer.parseInt(timehour)+Integer.parseInt
+                    (timeminute));
+            AlarmManagerUtil.setAlarm(this, 0, Integer.parseInt(timehour), Integer.parseInt
+                    (timeminute), 0, 0, "闹钟响了", 1);
+        }
+        else if(cicle==0){ //只响一次
+            System.out.println("只响一次");
+            AlarmManagerUtil.setAlarm(this, 1, Integer.parseInt(timehour), Integer.parseInt
+                    (timeminute), 0, 0, "闹钟响了", 1);
+        }
+        else {int [] num2=changetonumber(snumber);
+            System.out.println("设置多次");
+            for(int i=0;i<num2.length;i++){//设置多次
+                System.out.println(num2[i]+"");
+                AlarmManagerUtil.setAlarm(this, 2, Integer.parseInt(timehour), Integer
+                        .parseInt(timeminute), i, num2[i], "闹钟响了", 1);
+            }
+
+
+        }
+        Toast.makeText(this, "闹钟设置成功", Toast.LENGTH_LONG).show();
+    }
+
+    private int[] changetonumber(String snumber) {
+
+        int[] num = new int[snumber.length()];//定义整型数组用来接收转换的字符串数组
+        for(int i=0;i<num.length;i++){
+            num[i]=Integer.parseInt(snumber.charAt(i)+"");
+        }
+        return num;
+    }
+
+    /**
+     * @return  选中的日子 字符串拼接形式
+     */
+    public  String getdays3(){
         String s="";
 
         if(flag1){
-            s="周一";
-        }
-        if(flag2){s=s+"周二";}
-        if(flag3){s=s+"周三";}
-        if(flag4){s=s+"周四";}
-        if(flag5){s=s+"周五";}
-        if(flag6){s=s+"周六";}
-        if(flag7){s=s+"周日";}
-        if(s.length()>2){
+            s=s+"周一";
+            cicle++;
+            snumber=snumber+1;
 
         }
-        System.out.println(s);
-        return s;
+        if(flag2){ cicle++; snumber=snumber+2;
+            s=s+"周二";}
+        if(flag3){ s=s+"周三"; cicle++;snumber=snumber+3;}
+        if(flag4){ s=s+"周四"; cicle++;snumber=snumber+4;}
+        if(flag5){ s=s+"周五"; cicle++;snumber=snumber+5;
+        }
+        if(flag6){s=s+"周六"; cicle++;snumber=snumber+6;}
+        if(flag7){ s=s+"周日"; cicle++;snumber=snumber+7;}
+        if((flag1||flag2||flag3||flag4||flag5||flag6||flag7)==false){
+            s="每天";
+        }
+        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+        return  s;
 
     }
 

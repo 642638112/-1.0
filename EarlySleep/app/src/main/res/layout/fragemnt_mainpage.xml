@@ -8,7 +8,7 @@
     <include layout="@layout/head_bar"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="320dp"
        >
 
         <ListView
@@ -18,7 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
     </LinearLayout>
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="0.1dp"
+        android:background="@color/gray"/>
     <TextView
         android:layout_marginLeft="13dp"
         android:layout_marginTop="10dp"
@@ -28,9 +33,49 @@
         android:text="静心音乐"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
+        <TextView
+            android:layout_marginLeft="13dp"
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:text="溪流"
+            android:textSize="12sp"
+            android:background="@mipmap/selectsong"
+            android:layout_height="28dp" />
 
+        <TextView
+            android:layout_margin="30dp"
+            android:layout_marginLeft="13dp"
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:text="溪流大圣的"
+            android:maxLength="3"
+
+            android:textSize="12sp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:background="@mipmap/selectsong"
+            android:layout_height="28dp" />
+        <Switch
+            android:id="@+id/setting_time_sw"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:showText="true"
+            android:textOff=""
+            android:textOn=""
+            android:thumbTextPadding="12dp"
+
+            android:track="@drawable/switch_bg"
+            android:thumb="@drawable/switch_thumb"
+
+            android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"
+
+            />
 
     </LinearLayout>
 
@@ -69,6 +114,7 @@
         <include layout="@layout/mynumberpickerminute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
             android:id="@+id/numpickrelay2" android:layout_toRightOf="@id/time1"/>
 
         <TextView

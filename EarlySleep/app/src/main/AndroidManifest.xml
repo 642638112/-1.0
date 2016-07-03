@@ -20,6 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.AddTimeActivity"/>
+        <activity android:name=".Activity.LockActivity"/>
+        <service android:name="com.earlysleep.Reciver.ZdLockService" />
+        <receiver android:name="com.earlysleep.Reciver.LoongggAlarmReceiver" >
+            <intent-filter>
+                <action android:name="com.loonggg.alarm.clock" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

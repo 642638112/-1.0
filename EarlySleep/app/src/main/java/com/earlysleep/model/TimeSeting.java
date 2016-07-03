@@ -9,16 +9,32 @@ import org.litepal.crud.DataSupport;
 public class TimeSeting extends DataSupport {
     private String time;//具体时间 精确到分钟
 
-    public String getWeekday() {
-        return weekday;
+    public boolean isOfforon() {
+        return offoron;
     }
 
-    public void setWeekday(String weekday) {
-        this.weekday = weekday;
+    public void setOfforon(boolean offoron) {
+        this.offoron = offoron;
     }
 
-    private  String weekday;
+    private boolean offoron;
+    public String getWeeksday() {
+        return weeksday;
+    }
+
+    public void setWeeksday(String weeksday) {
+        this.weeksday = weeksday;
+    }
+
+    private  String weeksday;
+
+
+
+
+
     private boolean flag;//是否打开开关
+
+
 
     public String getTime() {
         return time;
